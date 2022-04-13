@@ -24,13 +24,11 @@ class Reserve_TCP_Tunnel_Server:
         writer.close()
 
     async def _tunnel_handle(self, c_reader7, c_writer2):
-        '''处理 tunnel_client -> tunnel_server 的连接 '''
         await self._queue.put([c_reader7, c_writer2])
         addr = c_writer2.get_extra_info('peername')
         print(f"open sock[c->s]:{addr}, connected:{self._queue.qsize()}")
 
     async def _proxy_handle(self, s_reader1, s_writer8):
-        '''处理 server 端本地的的代理请求'''
         addr = s_writer8.get_extra_info('peername')
         print(f"open sock[localproxy]: {addr}")
         c_reader7, c_writer2 = await self._queue.get()
