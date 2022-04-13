@@ -76,4 +76,4 @@ if __name__ == "__main__":
     hp_config = '127.0.0.1', 8118
     CONST__CLIENT_CONNECTIONS = 500
     client = Reserve_TCP_Tunnel_Client(ts_config, hp_config)
-    client.run(CONST__CLIENT_CONNECTIONS)
+    client.run(CONST_CLIENT_CONNECTIONS)
