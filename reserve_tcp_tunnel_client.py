@@ -49,12 +49,12 @@ class Reserve_TCP_Tunnel_Client:
         task = asyncio.ensure_future(
             self._copy_data_cp34('tc->hp', a_reader3, a_writer6))
 
-    def run(self, CONST_CLIENT_CONNECTIONS=500):
+    def run(self, CLIENT_CONNECTIONS=500):
         loop = asyncio.get_event_loop()
         print(
             f"open sock[tunnel_server]: {self._ts_host}:{self._ts_port}, CONNECTIONS = {CONST_CLIENT_CONNECTIONS}"
         )
-        for _ in range(CONST_CLIENT_CONNECTIONS):
+        for _ in range(CLIENT_CONNECTIONS):
             asyncio.ensure_future(client.connect_tunnel_server())
 
         while True:
@@ -74,6 +74,6 @@ class Reserve_TCP_Tunnel_Client:
 if __name__ == "__main__":
     ts_config = '127.0.0.1', 2222
     hp_config = '127.0.0.1', 8118
-    CONST__CLIENT_CONNECTIONS = 500
+    CONST_CLIENT_CONNECTIONS = 500
     client = Reserve_TCP_Tunnel_Client(ts_config, hp_config)
     client.run(CONST_CLIENT_CONNECTIONS)
